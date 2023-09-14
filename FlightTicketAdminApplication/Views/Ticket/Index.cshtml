@@ -1,0 +1,74 @@
+﻿@model List<FlightTicketAdminApplication.Models.Ticket>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+
+
+    <div class="row m-4">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Departure City</th>
+                    <th scope="col">Arrival City</th>
+                    <th scope="col">Flight Description</th>
+                    <th scope="col">Ticket Price</th>
+                    <th scope="col">Flight Duration</th>
+                    <th scope="col">Flight Class</th>
+                    <th scope="col">Date&Time</th>
+
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count == 0)
+                {
+                    <tr>
+                        <td colspan="5">No Tickets </td>
+                    </tr>
+                }
+                else
+                {
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        var item = Model[i];
+
+                        <tr>
+                            <th scope="row">@(i + 1)</th>
+                            <td>@item.DepartureCity</td>
+                            <td>@item.ArrivalCity</td>
+                            <td>@item.FlightDescription</td>
+                            <td>$@item.TicketPrice</td>
+                            <td>@item.FlightDuration</td>
+                            <td>@item.FlightClass</td>
+                            <td>@item.DepartureDateTime</td>
+
+
+       
+                        </tr>
+                    }
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="row m-4">
+
+        <form asp-action="ExportTickets">
+            <h6>Export All Tickets :</h6>
+
+            <div class="form-group">
+                <input type="submit" value="Export" class="btn btn-success" />
+            </div>
+        </form>
+
+    </div>
+
+
+</div>
